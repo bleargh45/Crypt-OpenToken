@@ -26,13 +26,20 @@ sub subject {
 
 sub is_valid {
     my $self = shift;
+    my %args = @_;
+    my $skew = $args{clock_skew} || 5;
     my $now  = DateTime->now(time_zone => 'UTC');
-
     my $not_before = $self->not_before;
-    return 0 if ($not_before && ($now < $not_before));
+    if ($not_before) {
+        $not_before->add(seconds => -$skew);
+        return 0 if ($now < $not_before);
+    }
 
     my $not_on_or_after = $self->not_on_or_after;
-    return 0 if ($not_on_or_after && ($now >= $not_on_or_after));
+    if ($not_on_or_after) {
+        $not_on_or_after->add(seconds => $skew);
+        return 0 if ($now >= $not_on_or_after);
+    }
 
     return 1;
 }
@@ -77,7 +84,7 @@ Crypt::OpenToken::Token - OpenToken data object
   $factory = Crypt::OpenToken->new($password);
   $token   = $factory->parse($token_string);
 
-  if ($token->is_valid) {
+  if ($token->is_valid(clock_skew => $allowable_skew)) {
      # token is valid, do something with the data
   }
 
@@ -93,10 +100,13 @@ This module implements the data representation of an OpenToken.
 
 Returns the "subject" field as specified in the token data.
 
-=item is_valid()
+=item is_valid(clock_skew => $allowable_skew)
 
 Checks to see if the OpenToken is valid, based on the standard fields
 specified in the IETF draft specification.
+
+Can accept an optional C<clock_skew> parameter, which specifies the amount of
+allowable clock skew (in seconds).  Defaults to "5 seconds".
 
 =item renew_until()
 
