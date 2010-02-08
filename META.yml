@@ -1,0 +1,46 @@
+---
+abstract: "Perl implementation of Ping Identity's \"OpenToken\""
+author:
+  - 'Graham TerMarsch (cpan@howlingfrog.com)'
+build_requires:
+  Test::Differences: 0
+  Test::Exception: 0
+  Test::More: 0
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3601'
+license: artistic
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Crypt-OpenToken
+provides:
+  Crypt::OpenToken:
+    file: lib/Crypt/OpenToken.pm
+    version: 0.01
+  Crypt::OpenToken::Cipher:
+    file: lib/Crypt/OpenToken/Cipher.pm
+  Crypt::OpenToken::Cipher::AES128:
+    file: lib/Crypt/OpenToken/Cipher/AES128.pm
+  Crypt::OpenToken::Cipher::AES256:
+    file: lib/Crypt/OpenToken/Cipher/AES256.pm
+  Crypt::OpenToken::Cipher::DES3:
+    file: lib/Crypt/OpenToken/Cipher/DES3.pm
+  Crypt::OpenToken::Cipher::NULL:
+    file: lib/Crypt/OpenToken/Cipher/null.pm
+  Crypt::OpenToken::KeyGenerator:
+    file: lib/Crypt/OpenToken/KeyGenerator.pm
+  Crypt::OpenToken::Serializer:
+    file: lib/Crypt/OpenToken/Serializer.pm
+  Crypt::OpenToken::Token:
+    file: lib/Crypt/OpenToken/Token.pm
+recommends:
+  Crypt::DES: 0
+  Crypt::NULL: 0
+requires:
+  Crypt::Rijndael: 0
+  Digest::HMAC_SHA1: 0
+  MIME::Base64: 0
+resources:
+  license: http://opensource.org/licenses/artistic-license.php
+version: 0.01
