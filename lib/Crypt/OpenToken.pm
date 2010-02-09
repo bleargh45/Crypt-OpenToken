@@ -153,7 +153,8 @@ sub create {
 sub _pkcs5_padded {
     my ($self, $data, $bsize) = @_;
     if ($bsize) {
-        my $pad_needed = bytes::length($data) % $bsize;
+        my $data_len   = bytes::length($data);
+        my $pad_needed = $bsize - ($data_len % $bsize);
         $data .= chr($pad_needed) x $pad_needed;
     }
     return $data;
