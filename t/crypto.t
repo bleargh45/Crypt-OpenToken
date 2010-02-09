@@ -39,13 +39,22 @@ aes_256: {
         todo_skip 'AES-256 sample not available for testing', 2;
         local $TODO = 'AES-256 sample not available for testing';
 
-        my $encrypted = $factory->create(
-            Crypt::OpenToken::CIPHER_AES256, \%data,
-        );
-        is $encrypted, $aes256, 'AES-256; encryption';
+        # decrypt the data from another OpenToken application
+        compatibility: {
+            my $decrypted = $factory->parse($aes256);
+            eq_or_diff $decrypted->data(), \%data,
+                'AES-256; decrypt externally generated data';
+        }
 
-        my $decrypted = $factory->parse($aes256);
-        eq_or_diff $decrypted->params, \%data, 'AES-256; decryption';
+        # encryption/decryption round-trip
+        round_trip: {
+            my $encrypted = $factory->create(
+                Crypt::OpenToken::CIPHER_AES256, \%data,
+            );
+            my $decrypted = $factory->parse($encrypted);
+            eq_or_diff $decrypted->data(), \%data,
+                'AES-256; encryption/decryption round-trip';
+        }
     }
 }
 
@@ -78,16 +87,25 @@ des3_156: {
     my $factory = Crypt::OpenToken->new(password => $password);
 
     TODO: {
-        todo_skip 'DES3-156 code not written yet', 2;
-        local $TODO = 'DES3-156 code not written yet';
+        todo_skip 'DES3-168 code not written yet', 2;
+        local $TODO = 'DES3-168 code not written yet';
 
-        my $encrypted = $factory->create(
-            Crypt::OpenToken::CIPHER_DES3, \%data,
-        );
-        is $encrypted, $des3, 'DES3-168; encryption';
+        # decrypt the data from another OpenToken application
+        compatibility: {
+            my $decrypted = $factory->parse($des3);
+            eq_or_diff $decrypted->data(), \%data,
+                'DES3-168; decrypt externally generated data';
+        }
 
-        my $decrypted = $factory->decrypt($des3);
-        eq_or_diff $decrypted->params, \%data, 'DES3-168; decryption';
+        # encryption/decryption round-trip
+        round_trip: {
+            my $encrypted = $factory->create(
+                Crypt::OpenToken::CIPHER_DES3, \%data,
+            );
+            my $decrypted = $factory->parse($encrypted);
+            eq_or_diff $decrypted->data(), \%data,
+                'DES3-168; encryption/decryption round-trip';
+        }
     }
 }
 
