@@ -29,6 +29,7 @@ sub is_valid {
     my %args = @_;
     my $skew = $args{clock_skew} || 5;
     my $now  = DateTime->now(time_zone => 'UTC');
+
     my $not_before = $self->not_before;
     if ($not_before) {
         $not_before->add(seconds => -$skew);
