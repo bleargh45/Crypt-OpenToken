@@ -87,26 +87,21 @@ aes_128: {
 des3_156: {
     my $factory = Crypt::OpenToken->new(password => $password);
 
-    TODO: {
-        todo_skip 'DES3-168 code not written yet', 2;
-        local $TODO = 'DES3-168 code not written yet';
+    # decrypt the data from another OpenToken application
+    compatibility: {
+        my $decrypted = $factory->parse($des3);
+        eq_or_diff $decrypted->data(), \%data,
+            'DES3-168; decrypt externally generated data';
+    }
 
-        # decrypt the data from another OpenToken application
-        compatibility: {
-            my $decrypted = $factory->parse($des3);
-            eq_or_diff $decrypted->data(), \%data,
-                'DES3-168; decrypt externally generated data';
-        }
-
-        # encryption/decryption round-trip
-        round_trip: {
-            my $encrypted = $factory->create(
-                Crypt::OpenToken::CIPHER_DES3, \%data,
-            );
-            my $decrypted = $factory->parse($encrypted);
-            eq_or_diff $decrypted->data(), \%data,
-                'DES3-168; encryption/decryption round-trip';
-        }
+    # encryption/decryption round-trip
+    round_trip: {
+        my $encrypted = $factory->create(
+            Crypt::OpenToken::CIPHER_DES3, \%data,
+        );
+        my $decrypted = $factory->parse($encrypted);
+        eq_or_diff $decrypted->data(), \%data,
+            'DES3-168; encryption/decryption round-trip';
     }
 }
 

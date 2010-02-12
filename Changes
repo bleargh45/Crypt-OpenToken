@@ -1,5 +1,6 @@
 ????
     - add support for "NULL encryption"
+    - add support for "DES3-168 encryption"
 
 0.01    - Thu Feb  4 15:34:00 PST 2010
     - initial version

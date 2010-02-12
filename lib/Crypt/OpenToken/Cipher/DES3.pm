@@ -1,7 +1,8 @@
 package Crypt::OpenToken::Cipher::DES3;
 
 use Moose;
-use Crypt::DES;
+use Crypt::CBC;
+use Crypt::DES_EDE3;
 
 with 'Crypt::OpenToken::Cipher';
 
@@ -9,8 +10,15 @@ sub keysize { 24 }
 sub iv_len  { 8 }
 sub cipher {
     my ($self, $key, $iv) = @_;
-    # XXX: no use of IV ?
-    return Crypt::DES->new($key);
+
+    my $cipher = Crypt::CBC->new(
+        -key         => $key,
+        -literal_key => 1,
+        -cipher      => 'DES_EDE3',
+        -header      => 'none',
+        -iv          => $iv,
+    );
+    return $cipher;
 }
 
 1;

@@ -35,7 +35,8 @@ provides:
   Crypt::OpenToken::Token:
     file: lib/Crypt/OpenToken/Token.pm
 recommends:
-  Crypt::DES: 0
+  Crypt::CBC: 0
+  Crypt::DES_EDE3: 0
   Crypt::NULL: 0
 requires:
   Crypt::Rijndael: 0

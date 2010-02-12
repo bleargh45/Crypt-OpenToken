@@ -13,8 +13,9 @@ Module::Build->new(
         'Crypt::Rijndael'   => 0,
     },
     recommends => {
-        'Crypt::DES'  => 0,
-        'Crypt::NULL' => 0,
+        'Crypt::CBC'      => 0,
+        'Crypt::DES_EDE3' => 0,
+        'Crypt::NULL'     => 0,
     },
     build_requires => {
         'Test::More'        => 0,
