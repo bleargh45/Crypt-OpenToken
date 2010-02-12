@@ -9,6 +9,7 @@ Module::Build->new(
     requires    => {
         'MIME::Base64'      => 0,
         'Digest::HMAC_SHA1' => 0,
+        'Digest::SHA1'      => 0,
         'Crypt::Rijndael'   => 0,
     },
     recommends => {

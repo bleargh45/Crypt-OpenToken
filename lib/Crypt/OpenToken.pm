@@ -4,6 +4,7 @@ use Moose;
 use Carp qw(croak);
 use MIME::Base64 qw(encode_base64 decode_base64);
 use Compress::Zlib;
+use Digest::SHA1;
 use Digest::HMAC_SHA1;
 use Data::Dumper qw(Dumper);
 use Crypt::CBC;
@@ -101,7 +102,8 @@ sub create {
 
     # get the chosen cipher, and generate a random IV for the encryption
     my $cipher_obj = $self->_cipher($cipher);
-    my $iv         = Crypt::CBC->random_bytes($cipher_obj->iv_len);
+    my $iv         = Crypt::CBC->random_bytes($cipher_obj->iv_len)
+        if ($cipher_obj->iv_len);
 
     # generate an encryption key for this cipher
     my $key = Crypt::OpenToken::KeyGenerator::generate(
@@ -163,7 +165,12 @@ sub _pkcs5_padded {
 sub _create_hmac {
     my ($self, $key, $fields, $plaintext) = @_;
 
-    my $digest = Digest::HMAC_SHA1->new($key);
+    # NULL cipher uses SHA1 digest, all other ciphers use an HMAC_SHA1
+    my $digest =
+        ($fields->{cipher} == CIPHER_NULL)
+        ? Digest::SHA1->new()
+        : Digest::HMAC_SHA1->new($key);
+
     $digest->add(chr($fields->{version}));
     $digest->add(chr($fields->{cipher}));
     $digest->add($fields->{iv})  if ($fields->{iv_len} > 0);

@@ -26,7 +26,7 @@ provides:
     file: lib/Crypt/OpenToken/Cipher/AES256.pm
   Crypt::OpenToken::Cipher::DES3:
     file: lib/Crypt/OpenToken/Cipher/DES3.pm
-  Crypt::OpenToken::Cipher::NULL:
+  Crypt::OpenToken::Cipher::null:
     file: lib/Crypt/OpenToken/Cipher/null.pm
   Crypt::OpenToken::KeyGenerator:
     file: lib/Crypt/OpenToken/KeyGenerator.pm
@@ -40,6 +40,7 @@ recommends:
 requires:
   Crypt::Rijndael: 0
   Digest::HMAC_SHA1: 0
+  Digest::SHA1: 0
   MIME::Base64: 0
 resources:
   license: http://opensource.org/licenses/artistic-license.php

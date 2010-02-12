@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 7;
+use Test::More tests => 9;
 use Test::Exception;
 use Test::Differences;
 use Crypt::OpenToken;
@@ -29,6 +29,7 @@ my $password = 'a66C9MvM8eY4qJKyCXKW+19PWDeuc3th';
 my $aes128   = 'T1RLAQLYzm2R0wpOyyqdYp2RQ-t_Im7KLBA2RwUN-GrKzUY36XXJqPHYAAAg1Gg6bi9SwAZTWxp9SfUSSt7ypVAVqbQwS6Flw2cqhCI*';
 my $aes256   = '';
 my $des3     = 'T1RLAQMdbpCui_Mpsin3jAo2Qcr482eYwghHrjVaX6X4WAAAGBrFPLDACb_ZOnmNNKLj26R-dITesg-bdA**';
+my $null     = 'T1RLAQAwciArHYl0DprhUtzpyOWP_2B-UwAAABR4nEvLz7dNSiziAmIgXQUAK3AFcA**';
 
 ###############################################################################
 # TEST: AES-256
@@ -106,6 +107,29 @@ des3_156: {
             eq_or_diff $decrypted->data(), \%data,
                 'DES3-168; encryption/decryption round-trip';
         }
+    }
+}
+
+###############################################################################
+# TEST: NULL
+null: {
+    my $factory = Crypt::OpenToken->new(password => $password);
+
+    # decrypt the data from another OpenToken application
+    compatibility: {
+        my $decrypted = $factory->parse($null);
+        eq_or_diff $decrypted->data(), \%data,
+            'NULL; decrypt externally generated data';
+    }
+
+    # encryption/decryption round-trip
+    round_trip: {
+        my $encrypted = $factory->create(
+            Crypt::OpenToken::CIPHER_NULL, \%data,
+        );
+        my $decrypted = $factory->parse($encrypted);
+        eq_or_diff $decrypted->data(), \%data,
+            'NULL; encryption/decryption round-trip';
     }
 }
 

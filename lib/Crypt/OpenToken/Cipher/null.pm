@@ -1,4 +1,4 @@
-package Crypt::OpenToken::Cipher::NULL;
+package Crypt::OpenToken::Cipher::null;
 
 use Moose;
 use Crypt::NULL;
@@ -9,15 +9,15 @@ sub keysize { 0 }
 sub iv_len  { 0 }
 sub cipher {
     my ($self, $key, $iv) = @_;
-    # XXX: no use of IV ?
-    return Crypt::NULL->new($key);
+    # its a "NULL" cipher... there's *no* need for a key or an iv...
+    return Crypt::NULL->new('dummy key');
 }
 
 1;
 
 =head1 NAME
 
-Crypt::OpenToken::Cipher::NULL - NULL encryption support for OpenToken
+Crypt::OpenToken::Cipher::null - Null encryption support for OpenToken
 
 =head1 DESCRIPTION
 
