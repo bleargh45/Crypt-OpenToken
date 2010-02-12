@@ -102,8 +102,10 @@ sub create {
 
     # get the chosen cipher, and generate a random IV for the encryption
     my $cipher_obj = $self->_cipher($cipher);
-    my $iv         = Crypt::CBC->random_bytes($cipher_obj->iv_len)
-        if ($cipher_obj->iv_len);
+    my $iv         = '';
+    if ($cipher_obj->iv_len) {
+        $iv = Crypt::CBC->random_bytes($cipher_obj->iv_len);
+    }
 
     # generate an encryption key for this cipher
     my $key = Crypt::OpenToken::KeyGenerator::generate(
