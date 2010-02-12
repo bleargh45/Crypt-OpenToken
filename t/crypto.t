@@ -85,46 +85,61 @@ aes_128: {
 ###############################################################################
 # TEST: DES3-156
 des3_156: {
-    my $factory = Crypt::OpenToken->new(password => $password);
+    SKIP: {
+        my $has_des3_installed = eval {
+            require Crypt::CBC;
+            require Crypt::DES_EDE3;
+        };
+        skip 'DES3 crypto modules not installed', 2 unless $has_des3_installed;
 
-    # decrypt the data from another OpenToken application
-    compatibility: {
-        my $decrypted = $factory->parse($des3);
-        eq_or_diff $decrypted->data(), \%data,
-            'DES3-168; decrypt externally generated data';
-    }
+        my $factory = Crypt::OpenToken->new(password => $password);
 
-    # encryption/decryption round-trip
-    round_trip: {
-        my $encrypted = $factory->create(
-            Crypt::OpenToken::CIPHER_DES3, \%data,
-        );
-        my $decrypted = $factory->parse($encrypted);
-        eq_or_diff $decrypted->data(), \%data,
-            'DES3-168; encryption/decryption round-trip';
+        # decrypt the data from another OpenToken application
+        compatibility: {
+            my $decrypted = $factory->parse($des3);
+            eq_or_diff $decrypted->data(), \%data,
+                'DES3-168; decrypt externally generated data';
+        }
+
+        # encryption/decryption round-trip
+        round_trip: {
+            my $encrypted = $factory->create(
+                Crypt::OpenToken::CIPHER_DES3, \%data,
+            );
+            my $decrypted = $factory->parse($encrypted);
+            eq_or_diff $decrypted->data(), \%data,
+                'DES3-168; encryption/decryption round-trip';
+        }
     }
 }
 
 ###############################################################################
 # TEST: NULL
 null: {
-    my $factory = Crypt::OpenToken->new(password => $password);
+    SKIP: {
+        my $has_null_installed = eval {
+            require Crypt::NULL;
+        };
+        skip 'NULL crypto module not installed', 2 unless $has_null_installed;
 
-    # decrypt the data from another OpenToken application
-    compatibility: {
-        my $decrypted = $factory->parse($null);
-        eq_or_diff $decrypted->data(), \%data,
-            'NULL; decrypt externally generated data';
-    }
+        my $factory = Crypt::OpenToken->new(password => $password);
 
-    # encryption/decryption round-trip
-    round_trip: {
-        my $encrypted = $factory->create(
-            Crypt::OpenToken::CIPHER_NULL, \%data,
-        );
-        my $decrypted = $factory->parse($encrypted);
-        eq_or_diff $decrypted->data(), \%data,
-            'NULL; encryption/decryption round-trip';
+        # decrypt the data from another OpenToken application
+        compatibility: {
+            my $decrypted = $factory->parse($null);
+            eq_or_diff $decrypted->data(), \%data,
+                'NULL; decrypt externally generated data';
+        }
+
+        # encryption/decryption round-trip
+        round_trip: {
+            my $encrypted = $factory->create(
+                Crypt::OpenToken::CIPHER_NULL, \%data,
+            );
+            my $decrypted = $factory->parse($encrypted);
+            eq_or_diff $decrypted->data(), \%data,
+                'NULL; encryption/decryption round-trip';
+        }
     }
 }
 
