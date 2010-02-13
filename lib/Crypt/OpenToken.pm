@@ -210,8 +210,8 @@ sub _unpack {
     $key_len = ord bytes::substr $token_str, 0, 1, '';
     $key     =     bytes::substr $token_str, 0, $key_len, '';
 
-    $payload_len = bytes::substr $token_str, 0, 2, '';
-    $payload = $token_str;
+    $payload_len = unpack 'n', bytes::substr $token_str, 0, 2, '';
+    $payload = bytes::substr $token_str, 0, $payload_len, '';
 
     return {
         version     => $version,
