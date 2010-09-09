@@ -1,13 +1,13 @@
 package Crypt::OpenToken;
 
 use Moose;
+use Fcntl qw();
 use Carp qw(croak);
 use MIME::Base64 qw(encode_base64 decode_base64);
 use Compress::Zlib;
 use Digest::SHA1;
 use Digest::HMAC_SHA1;
 use Data::Dumper qw(Dumper);
-use Crypt::CBC;
 use Crypt::OpenToken::KeyGenerator;
 use Crypt::OpenToken::Serializer;
 use Crypt::OpenToken::Token;
@@ -103,8 +103,8 @@ sub create {
     # get the chosen cipher, and generate a random IV for the encryption
     my $cipher_obj = $self->_cipher($cipher);
     my $iv         = '';
-    if ($cipher_obj->iv_len) {
-        $iv = Crypt::CBC->random_bytes($cipher_obj->iv_len);
+    if (my $len = $cipher_obj->iv_len) {
+        $iv = _rand_iv($len);
     }
 
     # generate an encryption key for this cipher
@@ -152,6 +152,28 @@ sub create {
     my $token_str = $self->_base64_encode($token);
     print "token created: $token_str\n" if $DEBUG;
     return $token_str;
+}
+
+sub _rand_iv {
+    my $len = shift;
+    my $iv  = '';
+    use bytes;
+
+    # try to use a reasonably unguessable source of random bytes.
+    # /dev/random isn't needed for IVs in general.
+    eval {
+        sysopen my $urand, '/dev/urandom', Fcntl::O_RDWR() or die $!;
+        binmode $urand or die $!;
+        sysread $urand, $iv, $len or die $!;
+    };
+    warn __PACKAGE__."::_rand_iv can't use /dev/urandom: $@" if $@;
+
+    # fill up with less random bytes
+    if (length($iv) < $len) {
+        $iv .= chr(int(rand(256))) until (length($iv) == $len);
+    }
+
+    return $iv;
 }
 
 sub _pkcs5_padded {
