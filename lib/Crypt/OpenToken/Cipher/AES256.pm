@@ -5,7 +5,7 @@ use Moose;
 # the key we use, so leverage the implementation in C:OT:C:AES128
 extends 'Crypt::OpenToken::Cipher::AES128';
 
-sub iv_len { 32 }
+sub keysize { 32 }
 
 1;
 
@@ -24,12 +24,12 @@ AES-256 encryption.
 
 =item keysize()
 
-Returns the key size used for AES-256 encryption; 16 bytes.
+Returns the key size used for AES-256 encryption; 32 bytes.
 
 =item iv_len()
 
 Returns the length of the Initialization Vector needed for AES-256 encryption;
-32 bytes.
+16 bytes.
 
 =item cipher($key, $iv)
 
