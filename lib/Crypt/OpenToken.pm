@@ -23,6 +23,16 @@ has 'password' => (
     required => 1,
 );
 
+# http://tools.ietf.org/html/draft-smith-opentoken-02
+use constant TOKEN_PACK =>
+   'a3'.    # literal 'OTK'
+   'C'.     # version (unsigned-byte)
+   'C'.     # cipher
+   'a20'.   # hmac string (20 bytes for SHA1/SHA1_HMAC)
+   'C/a*'.  # IV (with unsigned-byte length-prefix)
+   'C/a*'.  # key (with unsigned-byte length-prefix)
+   'n/a*';  # payload (with network-endian short length-prefix)
+
 {
     # List of ciphers supported by OpenTokens (order here *IS* important);
     my @CIPHER_MODULES = qw( null AES256 AES128 DES3 );
@@ -206,61 +216,41 @@ sub _create_hmac {
 
 sub _unpack {
     my ($self, $token_str) = @_;
-    my ($literal, $version, $cipher, $hmac);
-    my ($iv_len, $iv);
-    my ($key_len, $key);
-    my ($payload_len, $payload);
-    my $leftover;
+    use bytes;
 
-    # have to unpack the token in stages, as it has embedded lengths within it
-    # for other items in the structure.
-    $literal =     bytes::substr $token_str, 0, 3, '';
-    $version = ord bytes::substr $token_str, 0, 1, '';
-    $cipher  = ord bytes::substr $token_str, 0, 1, '';
-    $hmac    =     bytes::substr $token_str, 0, 20, '';
-
-    unless ($literal eq 'OTK') {
-        croak "invalid literal identifier in OTK; '$literal'";
+    my ($otk, $ver, $cipher, $hmac, $iv, $key, $payload)
+        = unpack(TOKEN_PACK, $token_str);
+    unless ($otk eq 'OTK') {
+        croak "invalid literal identifier in OTK; '$otk'";
     }
-    unless ($version == 1) {
-        croak "unsupported OTK version; '$version'";
+    unless ($ver == 1) {
+        croak "unsupported OTK version; '$ver'";
     }
-
-    $iv_len = ord bytes::substr $token_str, 0, 1, '';
-    $iv     =     bytes::substr $token_str, 0, $iv_len, '';
-
-    $key_len = ord bytes::substr $token_str, 0, 1, '';
-    $key     =     bytes::substr $token_str, 0, $key_len, '';
-
-    $payload_len = unpack 'n', bytes::substr $token_str, 0, 2, '';
-    $payload = bytes::substr $token_str, 0, $payload_len, '';
 
     return {
-        version     => $version,
+        version     => $ver,
         cipher      => $cipher,
         hmac        => $hmac,
-        iv_len      => $iv_len,
+        iv_len      => length($iv),
         iv          => $iv,
-        key_len     => $key_len,
+        key_len     => length($key),
         key         => $key,
-        payload_len => $payload_len,
+        payload_len => length($payload),
         payload     => $payload,
     };
 }
 
 sub _pack {
     my ($self, %fields) = @_;
-    my $token_str
-        = 'OTK'
-        . chr($fields{version})
-        . chr($fields{cipher})
-        . bytes::substr($fields{hmac}, 0, 20)
-        . chr($fields{iv_len})
-        . bytes::substr($fields{iv}, 0, $fields{iv_len})
-        . chr($fields{key_len})
-        . bytes::substr($fields{key}, 0, $fields{key_len})
-        . pack('S', $fields{payload_len})
-        . bytes::substr($fields{payload}, 0, $fields{payload_len});
+
+    # truncate to specified lengths
+    for (qw(iv key payload)) {
+        substr($fields{$_}, $fields{ $_ . "_len" }) = '';
+    }
+
+    my $token_str = pack(TOKEN_PACK,
+        'OTK', @fields{qw(version cipher hmac iv key payload)}
+    );
     return $token_str;
 }
 
