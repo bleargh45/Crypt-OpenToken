@@ -1,6 +1,7 @@
 ????
     - add support for "NULL encryption"
     - add support for "DES3-168 encryption"
+    - enable support for "AES-256 encryption"
     - ensure we only unpack "payload_len" bytes of the payload
     - use /dev/urandom to create random IV
     - internal cleanups/refactorings

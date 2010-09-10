@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More skip_all => 'AES-256 test data unavailable';
+use Test::More;
 use Test::Differences;
 use MIME::Base64;
 use Crypt::OpenToken;
@@ -10,6 +10,17 @@ use Crypt::OpenToken;
 ###############################################################################
 # TEST DATA
 my @test_data = (
+    {   # generated w/PingFederate
+        password_base64 => 'ZGV2bnVsbA==',
+        token => 'T1RLAQIuM613CkMJieBnFdjLq6Mo86mIHxABH-fPXvA5XjmfNu0fN5seAACgFPRXq3zvqry6g1AedGjUmBxVaKp2yAnN0dKrJ6FtLdG0ZFD6eV9FAW3eFOULExTiJNBBVe2qu7w3Csk7CzNRt0YXQMEsd_UDe0qpqWI2Wfd68CUr3OJuKMS6O5_3dYLscoyD4-QZNxGXkPkZZsMYiE2-vxIUlNazwyLTdBZ3K26tkER71siWwKUbsOA1H2Sexzk6iDCWpAtzo407lIJT6w**',
+        data  => {
+            'subject'         => 'devnull1@socialtext.com',
+            'not-on-or-after' => '2010-09-10T21:53:43Z',
+            'not-before'      => '2010-09-10T21:48:43Z',
+            'authnContext'    => 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
+            'renew-until'     => '2010-09-11T09:48:43Z',
+        },
+    },
 );
 
 ###############################################################################
