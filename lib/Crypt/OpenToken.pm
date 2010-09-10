@@ -382,6 +382,32 @@ to use:
 
 Graham TerMarsch (cpan@howlingfrog.com)
 
+Shawn Devlin (shawn.devlin@socialtext.com)
+
+=head2 Contributors
+
+Thanks to those who have provided feedback, comments, and patches:
+
+  Jeremy Stashewsky
+
+=head2 Sponsors
+
+B<BIG> thanks also go out to those who sponsored C<Crypt::OpenToken>:
+
+=over
+
+=item Socialtext
+
+Thanks for sponsoring the initial development of C<Crypt::OpenToken>, and then
+being willing to release it to the world.
+
+=item Ping Identity
+
+Thanks for your assistance during the initial development, providing feedback
+along the way, and answering our questions as they arose.
+
+=back
+
 =head1 COPYRIGHT
 
 =head1 SEE ALSO
