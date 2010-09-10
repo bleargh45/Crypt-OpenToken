@@ -33,29 +33,26 @@ use constant TOKEN_PACK =>
    'C/a*'.  # key (with unsigned-byte length-prefix)
    'n/a*';  # payload (with network-endian short length-prefix)
 
-{
-    # List of ciphers supported by OpenTokens (order here *IS* important);
-    my @CIPHER_MODULES = qw( null AES256 AES128 DES3 );
-    sub CIPHER_NULL   { 0 }
-    sub CIPHER_AES256 { 1 }
-    sub CIPHER_AES128 { 2 }
-    sub CIPHER_DES3   { 3 }
-    sub _cipher {
-        my ($self, $cipher) = @_;
+# List of ciphers supported by OpenToken
+use constant CIPHER_NULL   => 0;
+use constant CIPHER_AES256 => 1;
+use constant CIPHER_AES128 => 2;
+use constant CIPHER_DES3   => 3;
+use constant CIPHERS       => [qw(null AES256 AES128 DES3)];
 
-        my $impl = $CIPHER_MODULES[$cipher];
-        unless ($impl) {
-            croak "unsupported OTK cipher; '$cipher'";
-        }
+sub _cipher {
+    my ($self, $cipher) = @_;
 
-        my $mod = "Crypt::OpenToken::Cipher::$impl";
-        eval "require $mod";
-        if ($@) {
-            croak "unable to load cipher '$impl'; $@";
-        }
-        print "selected cipher: $impl\n" if $DEBUG;
-        return $mod->new;
+    my $impl = CIPHERS->[$cipher];
+    croak "unsupported OTK cipher; '$cipher'" unless ($impl);
+
+    my $mod = "Crypt::OpenToken::Cipher::$impl";
+    eval "require $mod";
+    if ($@) {
+        croak "unable to load cipher '$impl'; $@";
     }
+    print "selected cipher: $impl\n" if $DEBUG;
+    return $mod->new;
 }
 
 sub parse {
