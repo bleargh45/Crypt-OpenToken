@@ -32,7 +32,7 @@ sub is_valid {
 
     my $not_before = $self->not_before;
     if ($not_before) {
-        $not_before->add(seconds => -$skew);
+        $not_before->subtract(seconds => $skew);
         return 0 if ($now < $not_before);
     }
 

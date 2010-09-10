@@ -29,7 +29,7 @@ invalid_not_before: {
 ###############################################################################
 # TEST: invalid token; after "not-on-or-after"
 invalid_not_on_or_after: {
-    my $yesterday = DateTime->now()->add(days => -1);
+    my $yesterday = DateTime->now()->subtract(days => 1);
     my $date_str  = _make_iso8601_date($yesterday->epoch);
 
     my $token = Crypt::OpenToken::Token->new( {
@@ -42,7 +42,7 @@ invalid_not_on_or_after: {
 ###############################################################################
 # TEST: valid token
 valid: {
-    my $yesterday = DateTime->now()->add(days => -1);
+    my $yesterday = DateTime->now()->subtract(days => 1);
     my $tomorrow  = DateTime->now()->add(days => 1);
     my $token = Crypt::OpenToken::Token->new( {
         data => {
@@ -57,7 +57,7 @@ valid: {
 ###############################################################################
 # TEST: clock skew
 clock_skew: {
-    my $before = DateTime->now()->add(seconds => -10);
+    my $before = DateTime->now()->subtract(seconds => 10);
     my $after  = DateTime->now()->add(seconds =>  10);
     my $token = Crypt::OpenToken::Token->new( {
         data => {
