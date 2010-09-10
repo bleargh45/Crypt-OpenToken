@@ -13,7 +13,7 @@ use Crypt::OpenToken::Serializer;
 use Crypt::OpenToken::Token;
 require bytes;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 our $DEBUG   = 0;
 
 # shared encryption password

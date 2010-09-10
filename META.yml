@@ -17,7 +17,7 @@ name: Crypt-OpenToken
 provides:
   Crypt::OpenToken:
     file: lib/Crypt/OpenToken.pm
-    version: 0.01
+    version: 0.02
   Crypt::OpenToken::Cipher:
     file: lib/Crypt/OpenToken/Cipher.pm
   Crypt::OpenToken::Cipher::AES128:
@@ -45,4 +45,4 @@ requires:
   MIME::Base64: 0
 resources:
   license: http://opensource.org/licenses/artistic-license.php
-version: 0.01
+version: 0.02
