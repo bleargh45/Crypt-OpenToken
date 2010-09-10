@@ -260,10 +260,8 @@ sub _base64_decode {
     $token_str =~ s/(\*+)$/'=' x length($1)/e;
 
     # fixup: convert "_" to "/" (PingId PHP bindings encode this way)
-    $token_str =~ s{_}{/}g;
-
     # fixup: convert "-" to "+" (PingId PHP bindings encode this way)
-    $token_str =~ s{-}{+}g;
+    $token_str =~ tr{_-}{/+};
 
     # Base64 decode it, and we're done.
     my $decoded = decode_base64($token_str);
@@ -279,10 +277,8 @@ sub _base64_encode {
     my $encoded = encode_base64($token_str, '');
 
     # fixup: convert "+" to "-" (PingId PHP bindings encode this way)
-    $encoded =~ s{\+}{-}g;
-
     # fixup: convert "/" to "_" (PingId PHP bindings encode this way)
-    $encoded =~ s{/}{_}g;
+    $encoded =~ tr{/+}{_-};
 
     # fixup: convert trailing "="s to "*"s (OTK specific encoding)
     $encoded =~ s/(\=+)$/'*' x length($1)/e;
