@@ -81,6 +81,4 @@ Graham TerMarsch (cpan@howlingfrog.com)
 C<Crypt::OpenToken> is Copyright (C) 2010, Socialtext, and is released under
 the Artistic-2.0 license.
 
-=head1 SEE ALSO
-
 =cut
