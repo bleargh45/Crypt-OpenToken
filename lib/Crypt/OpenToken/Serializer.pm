@@ -125,6 +125,11 @@ Freezes the given data, returning a serialized string back to the caller.
 
 Graham TerMarsch (cpan@howlingfrog.com)
 
+=head1 COPYRIGHT & LICENSE
+
+C<Crypt::OpenToken> is Copyright (C) 2010, Socialtext, and is released under
+the Artistic-2.0 license.
+
 =head1 SEE ALSO
 
 L<http://tools.ietf.org/html/draft-smith-opentoken-02>

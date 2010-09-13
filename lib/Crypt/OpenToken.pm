@@ -408,7 +408,12 @@ along the way, and answering our questions as they arose.
 
 =back
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT & LICENSE
+
+=head2 Crypt::OpenToken
+
+C<Crypt::OpenToken> is Copyright (C) 2010, Socialtext, and is released under
+the Artistic-2.0 license.
 
 =head2 OpenToken specification
 

@@ -5,7 +5,7 @@ use Module::Build;
 Module::Build->new(
     module_name => 'Crypt::OpenToken',
     dist_author => 'Graham TerMarsch (cpan@howlingfrog.com)',
-    license     => 'artistic',
+    license     => 'artistic_2',
     requires    => {
         'MIME::Base64'      => 0,
         'Digest::HMAC_SHA1' => 0,

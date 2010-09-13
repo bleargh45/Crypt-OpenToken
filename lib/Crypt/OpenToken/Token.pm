@@ -139,7 +139,10 @@ If no "not-on-or-after" field was specified, this method returns C<undef>.
 
 Graham TerMarsch (cpan@howlingfrog.com)
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT & LICENSE
+
+C<Crypt::OpenToken> is Copyright (C) 2010, Socialtext, and is released under
+the Artistic-2.0 license.
 
 =head1 SEE ALSO
 
