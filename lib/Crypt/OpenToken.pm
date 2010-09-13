@@ -412,7 +412,7 @@ along the way, and answering our questions as they arose.
 
 =head1 SEE ALSO
 
-L<http://www.pingidentity.com/>
 L<http://tools.ietf.org/html/draft-smith-opentoken-02>
+L<http://www.pingidentity.com/opentoken>
 
 =cut
