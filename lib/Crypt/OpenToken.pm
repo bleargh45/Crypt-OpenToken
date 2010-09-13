@@ -319,7 +319,7 @@ Crypt::OpenToken - Perl implementation of Ping Identity's "OpenToken"
 
 =head1 DESCRIPTION
 
-This module implements a Perl implementation of the "OpenToken" standard as
+This module provides a Perl implementation of the "OpenToken" standard as
 defined by Ping Identity in their IETF Draft.
 
 =head1 METHODS
