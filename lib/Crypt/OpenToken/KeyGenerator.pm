@@ -14,8 +14,9 @@ sub generate {
     my $blocksize  = 20;
 
     my $num_blocks = POSIX::ceil($keysize / $blocksize);
+    my $digest = Digest::HMAC_SHA1->new($password);
     foreach my $idx (1 .. $num_blocks) {
-        my $digest = Digest::HMAC_SHA1->new($password);
+        $digest->reset();
         $digest->add($salt);
         $digest->add(pack('N', $idx));
         my $sha = $digest->digest;
@@ -35,8 +36,9 @@ sub _generate_block {
     my $result  = $sha;
     my $current = $sha;
 
+    my $digest = Digest::HMAC_SHA1->new($password);
     for (2 .. $iters) {
-        my $digest = Digest::HMAC_SHA1->new($password);
+        $digest->reset();
         $digest->add($current);
         $current = $digest->digest;
 
