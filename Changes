@@ -5,6 +5,8 @@
     - ensure we only unpack "payload_len" bytes of the payload
     - use /dev/urandom to create random IV
     - internal cleanups/refactorings
+    - *noticably* faster than previous release; several performance
+      improvements have been made
 
 0.01    - Thu Feb  4 15:34:00 PST 2010
     - initial version
