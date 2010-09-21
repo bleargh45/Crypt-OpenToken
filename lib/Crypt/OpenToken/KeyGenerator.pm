@@ -3,7 +3,7 @@ package Crypt::OpenToken::KeyGenerator;
 use strict;
 use warnings;
 use POSIX qw();
-use Digest::HMAC_SHA1;
+use Digest::HMAC_SHA1 qw(hmac_sha1);
 
 sub generate {
     my ($password, $keysize) = @_;
@@ -36,13 +36,9 @@ sub _generate_block {
     my $result  = $sha;
     my $current = $sha;
 
-    my $digest = Digest::HMAC_SHA1->new($password);
     for (2 .. $iters) {
-        $digest->reset();
-        $digest->add($current);
-        $current = $digest->digest;
-
-        $result = $result ^ $current;
+        $current = hmac_sha1($current, $password);
+        $result  = $result ^ $current;
     }
     return $result;
 }
