@@ -45,6 +45,21 @@ sub is_valid {
     return 1;
 }
 
+sub requires_renewal {
+    my $self = shift;
+    my %args = @_;
+    my $skew = $args{clock_skew} || 5;
+    my $now  = DateTime->now(time_zone => 'UTC');
+
+    my $renew_until = $self->renew_until;
+    if ($renew_until) {
+        $renew_until->add(seconds => $skew);
+        return 1 if ($now > $renew_until);
+    }
+
+    return 0;
+}
+
 sub renew_until {
     my $self = shift;
     my $when = $self->data->{'renew-until'};
@@ -89,6 +104,10 @@ Crypt::OpenToken::Token - OpenToken data object
      # token is valid, do something with the data
   }
 
+  if ($token->requires_renewal(clock_skew => $allowable_skew)) {
+     # token should be renewed by authenticating the User again
+  }
+
 =head1 DESCRIPTION
 
 This module implements the data representation of an OpenToken.
@@ -105,6 +124,15 @@ Returns the "subject" field as specified in the token data.
 
 Checks to see if the OpenToken is valid, based on the standard fields
 specified in the IETF draft specification.
+
+Can accept an optional C<clock_skew> parameter, which specifies the amount of
+allowable clock skew (in seconds).  Defaults to "5 seconds".
+
+=item requires_renewal(clock_skew => $allowable_skew)
+
+Checks to see if the OpenToken is past its "renew-until" timestamp, and
+requires that it be renewed by re-authenticating the User.  B<Not>
+automatically renewed/reissued, but by B<re-authenticating> the User.
 
 Can accept an optional C<clock_skew> parameter, which specifies the amount of
 allowable clock skew (in seconds).  Defaults to "5 seconds".

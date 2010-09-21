@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use POSIX qw(strftime);
-use Test::More tests => 10;
+use Test::More tests => 16;
 use Crypt::OpenToken::Token;
 
 ###############################################################################
@@ -52,6 +52,47 @@ valid: {
     } );
     isa_ok $token, 'Crypt::OpenToken::Token';
     ok $token->is_valid, '... which is valid';
+}
+
+###############################################################################
+# TEST: token needs renewal
+needs_renewal: {
+    my $yesterday = DateTime->now()->subtract(days => 1);
+    my $token = Crypt::OpenToken::Token->new( {
+        data => {
+            'renew-until' => _make_iso8601_date($yesterday->epoch),
+        },
+    } );
+    isa_ok $token, 'Crypt::OpenToken::Token';
+    ok $token->requires_renewal, '... which requires renewal';
+}
+
+###############################################################################
+# TEST: token not in need of renewal; off in future
+no_renewal_in_future: {
+    my $tomorrow  = DateTime->now()->add(days => 1);
+    my $token = Crypt::OpenToken::Token->new( {
+        data => {
+            'renew-until' => _make_iso8601_date($tomorrow->epoch),
+        },
+    } );
+    isa_ok $token, 'Crypt::OpenToken::Token';
+    ok !$token->requires_renewal, '... which does not require renewal';
+}
+
+###############################################################################
+# TEST: token not in need of renewal; not specified
+no_renewal_not_specified: {
+    my $yesterday = DateTime->now()->subtract(days => 1);
+    my $tomorrow  = DateTime->now()->add(days => 1);
+    my $token = Crypt::OpenToken::Token->new( {
+        data => {
+            'not-before'      => _make_iso8601_date($yesterday->epoch),
+            'not-on-or-after' => _make_iso8601_date($tomorrow->epoch),
+        },
+    } );
+    isa_ok $token, 'Crypt::OpenToken::Token';
+    ok !$token->requires_renewal, '... which does not require renewal';
 }
 
 ###############################################################################
