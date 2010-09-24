@@ -2,6 +2,5 @@ Build
 _build/
 blib/
 \.git/
-debian/
 \..*\.sw[a-z]
 ^MYMETA.yml$
