@@ -16,6 +16,7 @@ requires:
   Digest::HMAC_SHA1: 0
   Digest::SHA1: 0
   MIME::Base64: 0
+  Moose: 0
 recommends:
   Crypt::CBC: 0
   Crypt::DES_EDE3: 0
