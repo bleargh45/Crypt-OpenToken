@@ -12,7 +12,7 @@ use Crypt::OpenToken::KeyGenerator;
 use Crypt::OpenToken::Serializer;
 use Crypt::OpenToken::Token;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 our $DEBUG   = 0;
 
 # shared encryption password
