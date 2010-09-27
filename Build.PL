@@ -12,6 +12,7 @@ Module::Build->new(
         'Digest::SHA1'      => 0,
         'Crypt::Rijndael'   => 0,
         'Moose'             => 0,
+        'DateTime'          => 0,
     },
     recommends => {
         'Crypt::CBC'      => 0,

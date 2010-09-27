@@ -1,4 +1,5 @@
 0.04    - ???
+    - add missing dependency on DateTime.
 
 0.03    - Fri Sep 24 22:10:42 PDT 2010
     - add (forgotten) dependency on Moose.
