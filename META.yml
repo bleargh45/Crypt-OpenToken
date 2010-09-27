@@ -1,6 +1,6 @@
 ---
 name: Crypt-OpenToken
-version: 0.03
+version: 0.04
 author:
   - Graham TerMarsch (cpan@howlingfrog.com)
 abstract: Perl implementation of Ping Identity's "OpenToken"
@@ -26,7 +26,7 @@ configure_requires:
 provides:
   Crypt::OpenToken:
     file: lib/Crypt/OpenToken.pm
-    version: 0.03
+    version: 0.04
   Crypt::OpenToken::Cipher:
     file: lib/Crypt/OpenToken/Cipher.pm
   Crypt::OpenToken::Cipher::AES128:
