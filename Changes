@@ -1,5 +1,5 @@
 0.04    - ???
-    - add missing dependency on DateTime.
+    - add other missing dependencies.  Test::Prereq++
 
 0.03    - Fri Sep 24 22:10:42 PDT 2010
     - add (forgotten) dependency on Moose.

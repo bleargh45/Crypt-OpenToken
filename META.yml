@@ -12,7 +12,9 @@ build_requires:
   Test::Exception: 0
   Test::More: 0
 requires:
+  Compress::Zlib: 0
   Crypt::Rijndael: 0
+  Date::Parse: 0
   DateTime: 0
   Digest::HMAC_SHA1: 0
   Digest::SHA1: 0

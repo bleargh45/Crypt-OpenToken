@@ -13,6 +13,8 @@ Module::Build->new(
         'Crypt::Rijndael'   => 0,
         'Moose'             => 0,
         'DateTime'          => 0,
+        'Date::Parse'       => 0,
+        'Compress::Zlib'    => 0,
     },
     recommends => {
         'Crypt::CBC'      => 0,
