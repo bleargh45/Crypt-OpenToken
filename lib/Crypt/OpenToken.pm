@@ -378,6 +378,17 @@ to use:
 
 =back
 
+=head1 CAVEATS
+
+=over
+
+=item *
+
+This module does not (yet) support the "obfuscate password" option that is
+configurable within PingFederate's OpenToken adapter.
+
+=back
+
 =head1 AUTHOR
 
 Graham TerMarsch (cpan@howlingfrog.com)
