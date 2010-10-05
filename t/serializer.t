@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 10;
+use Test::More tests => 12;
 use Test::Differences;
 use Crypt::OpenToken::Serializer;
 
@@ -103,4 +103,24 @@ multi_line_values: {
     # Thaw
     my %thawed = Crypt::OpenToken::Serializer::thaw($serialized);
     eq_or_diff \%thawed, \%data, 'multi-line values; thaw';
+}
+
+###############################################################################
+# TEST: empty/blank values
+empty_or_blank_values: {
+    my %data = (
+        bar => '',
+        foo => 'foobar',
+    );
+    my $serialized
+        = "bar = \n"
+        . "foo = foobar\n";
+
+    # Freeze
+    my $frozen = Crypt::OpenToken::Serializer::freeze(%data);
+    is $frozen, $serialized, 'empty/blank values; freeze';
+
+    # Thaw
+    my %thawed = Crypt::OpenToken::Serializer::thaw($serialized);
+    eq_or_diff \%thawed, \%data, 'empty/blank values; thaw';
 }
