@@ -400,6 +400,7 @@ Shawn Devlin (shawn.devlin@socialtext.com)
 Thanks to those who have provided feedback, comments, and patches:
 
   Jeremy Stashewsky
+  Travis Spencer
 
 =head2 Sponsors
 
