@@ -3,6 +3,9 @@ package Crypt::OpenToken::Serializer;
 use strict;
 use warnings;
 
+our $WS   = qr/[\t ]/;      # WS, as per OpenToken spec (just tab and space)
+our $CRLF = qr/[\r\n]/;     # CRLF, as per OpenToken spec
+
 sub thaw {
     my $str = shift;
     my %data;
@@ -10,16 +13,16 @@ sub thaw {
     while ($str) {
         my ($key, $val);
         my ($quote, $remainder);
-        ($key, $remainder) = split /\s*=\s*/, $str, 2;
+
+        ($key, $remainder) = ($str =~ /^$WS*(\S+)$WS*=$WS*(.*)$/s);
 
         if ($remainder =~ /^['"]/) {
             ($quote, $val, $remainder)
-                = ($remainder =~ /^(['"])(.*?)(?<!\\)\1\s*?[\r\n]+(.*)/s);
+                = ($remainder =~ /^(['"])(.*?)(?<!\\)\1$WS*?$CRLF+(.*)/s);
             $val =~ s/\\(['"])/$1/g;
         }
         else {
-            ($val, $remainder) = split /^/, $remainder, 2;
-            chomp $val;
+            ($val, $remainder) = split /$CRLF+/, $remainder, 2;
         }
         $str = $remainder;
 
