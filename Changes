@@ -3,6 +3,7 @@
       option in the OpenToken specification.
     - Fix serialization bug when dealing with empty/blank values.  Thanks to
       Travis Spencer for the test case.
+    - Moved author tests into "xt/".
 
 0.04    - Sun Sep 26 21:51:21 PDT 2010
     - add other missing dependencies.  Test::Prereq++

@@ -22,6 +22,6 @@ t/keygenerator.t
 t/opentoken.t
 t/serializer.t
 t/token.t
-t/pod.t
-t/pod-coverage.t
-t/prereq.t
+xt/pod.t
+xt/pod-coverage.t
+xt/prereq.t
