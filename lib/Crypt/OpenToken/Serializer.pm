@@ -44,6 +44,7 @@ sub freeze {
         my $val  = $data{$key};
         my @vals = ref($val) eq 'ARRAY' ? @{$val} : ($val);
         foreach my $v (@vals) {
+            $v = '' unless (defined $v);
             if ($v =~ /\W/) {
                 $v =~ s/(['"])/\\$1/g;
                 $v = "'" . $v . "'";
