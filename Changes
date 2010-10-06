@@ -1,4 +1,4 @@
-0.05    - ???
+0.05    - Tue Oct  5 22:34:51 PDT 2010
     - Indicate in docs that C:OTK doesn't support the "obfuscate password"
       option in the OpenToken specification.
     - Fix serialization bug when dealing with empty/blank values.  Thanks to
