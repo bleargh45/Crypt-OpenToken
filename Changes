@@ -1,3 +1,6 @@
+0.06    - Tue Nov  2 14:22:31 PDT 2010
+    - Fix mode used to open "/dev/urandom"; should be O_RDONLY not O_RDWR
+
 0.05    - Tue Oct  5 22:34:51 PDT 2010
     - Indicate in docs that C:OTK doesn't support the "obfuscate password"
       option in the OpenToken specification.

@@ -12,7 +12,7 @@ use Crypt::OpenToken::KeyGenerator;
 use Crypt::OpenToken::Serializer;
 use Crypt::OpenToken::Token;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 our $DEBUG   = 0;
 
 # shared encryption password
@@ -168,7 +168,7 @@ sub _rand_iv {
     # try to use a reasonably unguessable source of random bytes.
     # /dev/random isn't needed for IVs in general.
     eval {
-        sysopen my $urand, '/dev/urandom', Fcntl::O_RDWR() or die $!;
+        sysopen my $urand, '/dev/urandom', Fcntl::O_RDONLY() or die $!;
         binmode $urand or die $!;
         sysread $urand, $iv, $len or die $!;
     };
