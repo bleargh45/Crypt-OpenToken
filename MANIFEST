@@ -25,3 +25,4 @@ t/token.t
 xt/pod.t
 xt/pod-coverage.t
 xt/prereq.t
+META.json
