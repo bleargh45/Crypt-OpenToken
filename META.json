@@ -4,7 +4,7 @@
       "Graham TerMarsch (cpan@howlingfrog.com)"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.110930",
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.120351",
    "license" : [
       "artistic_2"
    ],
@@ -16,9 +16,9 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Test::Differences" : 0,
-            "Test::Exception" : 0,
-            "Test::More" : 0
+            "Test::Differences" : "0",
+            "Test::Exception" : "0",
+            "Test::More" : "0"
          }
       },
       "configure" : {
@@ -28,19 +28,19 @@
       },
       "runtime" : {
          "recommends" : {
-            "Crypt::CBC" : 0,
-            "Crypt::DES_EDE3" : 0,
-            "Crypt::NULL" : 0
+            "Crypt::CBC" : "0",
+            "Crypt::DES_EDE3" : "0",
+            "Crypt::NULL" : "0"
          },
          "requires" : {
-            "Compress::Zlib" : 0,
-            "Crypt::Rijndael" : 0,
-            "Date::Parse" : 0,
-            "DateTime" : 0,
-            "Digest::HMAC_SHA1" : 0,
-            "Digest::SHA1" : 0,
-            "MIME::Base64" : 0,
-            "Moose" : 0
+            "Compress::Zlib" : "0",
+            "Crypt::Rijndael" : "0",
+            "Date::Parse" : "0",
+            "DateTime" : "0",
+            "Digest::HMAC_SHA1" : "0",
+            "Digest::SHA1" : "0",
+            "MIME::Base64" : "0",
+            "Moose" : "0"
          }
       }
    },
