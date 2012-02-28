@@ -18,7 +18,7 @@ name: Crypt-OpenToken
 provides:
   Crypt::OpenToken:
     file: lib/Crypt/OpenToken.pm
-    version: 0.06
+    version: 0.07
   Crypt::OpenToken::Cipher:
     file: lib/Crypt/OpenToken/Cipher.pm
     version: 0
@@ -58,4 +58,4 @@ requires:
   Moose: 0
 resources:
   license: http://opensource.org/licenses/artistic-license-2.0.php
-version: 0.06
+version: 0.07
