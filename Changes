@@ -1,3 +1,6 @@
+0.07    - Tue Feb 28 10:44:26 PST 2012
+    - Minor updates to xt/ tests
+
 0.06    - Tue Nov  2 14:22:31 PDT 2010
     - Fix mode used to open "/dev/urandom"; should be O_RDONLY not O_RDWR
 
