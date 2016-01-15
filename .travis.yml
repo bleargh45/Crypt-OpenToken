@@ -8,8 +8,9 @@ perl:
   -  "5.12"
   -  "5.10"
 
-# Include dependencies for all "xt/" tests.
+# Include dependencies for all "xt/" tests, and package "recommends"
 before_install:
+  - cpanm -n Crypt::CBC Crypt::DES_EDE3 Crypt::NULL
   - cpanm -n Test::Pod Test::Pod::Coverage
   - cpanm -n Test::Prereq
 
