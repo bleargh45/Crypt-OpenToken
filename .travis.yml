@@ -12,6 +12,7 @@ perl:
 before_install:
   - cpanm -n Crypt::CBC Crypt::DES_EDE3 Crypt::NULL
   - cpanm -n Test::Pod Test::Pod::Coverage
+  - cpanm -n Test::MinimumVersion
   - cpanm -n Test::Prereq
 
 # When building, include "xt/" directory too.
