@@ -11,8 +11,6 @@ perl:
 
 # Include dependencies for all "xt/" tests.
 before_install:
-  - cpanm -n Crypt::Rijndael Crypt::CBC Crypt::DES_EDE3 Crypt::NULL
-  - cpanm -n Moose
   - cpanm -n Test::Pod Test::Pod::Coverage
   - cpanm -n Test::Prereq
 
