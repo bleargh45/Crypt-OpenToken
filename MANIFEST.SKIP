@@ -1,7 +1,0 @@
-Build
-_build/
-blib/
-\.git/
-\..*\.sw[a-z]
-.travis.yml
-^MYMETA.yml$

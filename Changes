@@ -1,3 +1,8 @@
+Revision history for Perl extension Crypt::OpenToken:
+
+{{$NEXT}}
+    - Switch to Dist::Zilla
+
 0.07    - Tue Feb 28 10:44:26 PST 2012
     - Minor updates to xt/ tests
 
