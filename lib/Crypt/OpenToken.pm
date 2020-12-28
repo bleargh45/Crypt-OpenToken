@@ -458,7 +458,12 @@ SOFTWARE.
 
 =head1 SEE ALSO
 
-L<http://tools.ietf.org/html/draft-smith-opentoken-02>
-L<http://www.pingidentity.com/opentoken>
+=over
+
+=item L<http://tools.ietf.org/html/draft-smith-opentoken-02>
+
+=item L<http://www.pingidentity.com/opentoken>
+
+=back
 
 =cut

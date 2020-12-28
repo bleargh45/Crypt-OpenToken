@@ -147,5 +147,5 @@ Corporation, and released under the MIT License:
 
 # SEE ALSO
 
-[http://tools.ietf.org/html/draft-smith-opentoken-02](http://tools.ietf.org/html/draft-smith-opentoken-02)
-[http://www.pingidentity.com/opentoken](http://www.pingidentity.com/opentoken)
+- [http://tools.ietf.org/html/draft-smith-opentoken-02](http://tools.ietf.org/html/draft-smith-opentoken-02)
+- [http://www.pingidentity.com/opentoken](http://www.pingidentity.com/opentoken)
