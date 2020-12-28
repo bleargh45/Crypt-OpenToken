@@ -378,6 +378,8 @@ to use:
 
 =back
 
+=for Pod::Coverage CIPHERS TOKEN_PACK
+
 =head1 CAVEATS
 
 =over
