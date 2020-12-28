@@ -25,6 +25,8 @@ jobs:
             Dist::Zilla::Plugin::Test::MinimumVersion
             Dist::Zilla::Plugin::ReadmeAnyFromPod
             Dist::Zilla::Plugin::EnsureChangesHasContent
+            Dist::Zilla::Plugin::BumpVersionAfterRelease
+            Dist::Zilla::Plugin::Git
 
       - name: Install dependencies
         run: cpm install -g --no-test --show-build-log-on-failure $(dzil listdeps --author --missing)
