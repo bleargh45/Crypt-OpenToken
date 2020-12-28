@@ -24,6 +24,7 @@ jobs:
             Dist::Zilla::Plugin::Pod2Readme
             Dist::Zilla::Plugin::Prereqs::FromCPANfile
             Dist::Zilla::Plugin::Test::MinimumVersion
+            Dist::Zilla::Plugin::ReadmeAnyFromPod
             Dist::Zilla::Plugin::EnsureChangesHasContent
 
       - name: Install dependencies
