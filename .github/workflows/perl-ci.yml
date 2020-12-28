@@ -21,7 +21,6 @@ jobs:
           sudo: false
           install: |
             Dist::Zilla
-            Dist::Zilla::Plugin::Pod2Readme
             Dist::Zilla::Plugin::Prereqs::FromCPANfile
             Dist::Zilla::Plugin::Test::MinimumVersion
             Dist::Zilla::Plugin::ReadmeAnyFromPod
