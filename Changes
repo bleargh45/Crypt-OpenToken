@@ -1,6 +1,7 @@
 Revision history for Perl extension Crypt::OpenToken:
 
 {{$NEXT}}
+    - Minor POD fixes
 
 0.08      2020-12-28 13:04:13-08:00 America/Vancouver
     - Switch to Dist::Zilla

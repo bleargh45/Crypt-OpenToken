@@ -303,7 +303,7 @@ Crypt::OpenToken - Perl implementation of Ping Identity's "OpenToken"
   };
 
   # create an OpenToken factory based on a given shared password
-  $factory = Crypt::OpenToken->new($password);
+  $factory = Crypt::OpenToken->new(password => $password);
 
   # encrypt a hash-ref of data into an OpenToken.
   $token_str = $factory->create(
@@ -326,7 +326,7 @@ defined by Ping Identity in their IETF Draft.
 
 =over
 
-=item Crypt::OpenToken->new($password)
+=item Crypt::OpenToken->new(password => $password)
 
 Instantiates a new OpenToken factory, which can encrypt/decrypt OpenTokens
 using the specified shared C<$password>.
