@@ -3,6 +3,7 @@ package Crypt::OpenToken::Token;
 use Moose;
 use DateTime;
 use Date::Parse qw(str2time);
+use namespace::autoclean;
 
 # XXX: this could be a *lot* smarter; right now its just a glorified hashref
 has 'version' => (

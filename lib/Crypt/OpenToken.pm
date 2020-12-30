@@ -11,6 +11,7 @@ use Data::Dumper qw(Dumper);
 use Crypt::OpenToken::KeyGenerator;
 use Crypt::OpenToken::Serializer;
 use Crypt::OpenToken::Token;
+use namespace::autoclean;
 
 our $VERSION = '0.09';
 our $DEBUG   = 0;

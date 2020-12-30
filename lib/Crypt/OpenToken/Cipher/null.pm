@@ -2,6 +2,7 @@ package Crypt::OpenToken::Cipher::null;
 
 use Moose;
 use Crypt::NULL;
+use namespace::autoclean;
 
 with 'Crypt::OpenToken::Cipher';
 

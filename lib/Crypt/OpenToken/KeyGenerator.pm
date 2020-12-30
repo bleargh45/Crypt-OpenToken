@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use POSIX qw();
 use Digest::HMAC_SHA1 qw(hmac_sha1);
+use namespace::autoclean;
 
 sub generate {
     my ($password, $keysize) = @_;

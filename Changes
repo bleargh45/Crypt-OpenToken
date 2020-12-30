@@ -2,6 +2,7 @@ Revision history for Perl extension Crypt::OpenToken:
 
 {{$NEXT}}
     - Minor POD fixes
+    - Use namespace::autoclean to ensure all namespaces are clean
 
 0.08      2020-12-28 13:04:13-08:00 America/Vancouver
     - Switch to Dist::Zilla
