@@ -1,7 +1,7 @@
 Revision history for Perl extension Crypt::OpenToken:
 
 {{$NEXT}}
-    - Minor POD fixes
+    - Minor POD fixes, including spelling corrections
     - Use namespace::autoclean to ensure all namespaces are clean
     - Cleaned out unused variables
     - Updated SYNOPSIS sections, so they will pass syntax checks
