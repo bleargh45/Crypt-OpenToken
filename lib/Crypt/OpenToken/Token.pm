@@ -98,7 +98,7 @@ Crypt::OpenToken::Token - OpenToken data object
 
   use Crypt::OpenToken;
 
-  $factory = Crypt::OpenToken->new($password);
+  $factory = Crypt::OpenToken->new(password => $password);
   $token   = $factory->parse($token_string);
 
   if ($token->is_valid(clock_skew => $allowable_skew)) {
