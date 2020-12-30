@@ -23,7 +23,7 @@ sub generate {
         my $sha = $digest->digest;
 
         # generate the next block, and grab up to "$blocksize" chars out of it
-        my $block    = _generate_block($password, $sha, $iters, $idx);
+        my $block    = _generate_block($password, $sha, $iters);
         my $need     = $keysize - $offset;
         my $grabbing = $need < $blocksize ? $need : $blocksize;
         $key .= substr($block, 0, $grabbing);
@@ -33,7 +33,7 @@ sub generate {
 }
 
 sub _generate_block {
-    my ($password, $sha, $iters, $idx) = @_;
+    my ($password, $sha, $iters) = @_;
     my $result  = $sha;
     my $current = $sha;
 
