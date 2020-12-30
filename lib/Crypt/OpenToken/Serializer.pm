@@ -69,9 +69,17 @@ Crypt::OpenToken::Serializer - Serialize payloads for OpenTokens
 
   use Crypt::OpenToken::Serializer;
 
-  $payload = Crypt::OpenToken::Serializer::freeze(%data);
+  # data to serialize
+  my $data = {
+      foo => 'bar',
+      bar => 'baz',
+  };
 
-  %data = Crypt::OpenToken::Serializer::thaw($payload);
+  # freeze/serialize the data
+  my $payload = Crypt::OpenToken::Serializer::freeze(%{$data});
+
+  # thaw/deserialize the data
+  my %thawed = Crypt::OpenToken::Serializer::thaw($payload);
 
 =head1 DESCRIPTION
 
