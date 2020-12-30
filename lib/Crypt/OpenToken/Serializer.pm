@@ -61,11 +61,13 @@ sub freeze {
 
 1;
 
+=for stopwords OpenTokens
+
 =head1 NAME
 
 Crypt::OpenToken::Serializer - Serialize payloads for OpenTokens
 
-=head1 SYNOPSYS
+=head1 SYNOPSIS
 
   use Crypt::OpenToken::Serializer;
 
@@ -122,7 +124,7 @@ lowercase and use hyphens to separate "words".
 
 =item Crypt::OpenToken::Serializer::thaw($string)
 
-Thaws the given serialzed data, returning a hash of data back to the caller.
+Thaws the given serialized data, returning a hash of data back to the caller.
 
 If the data contained any repeating keys, those are represented in the hash as
 having an ARRAYREF as a value.
