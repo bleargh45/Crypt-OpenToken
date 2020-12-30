@@ -54,7 +54,9 @@ Crypt::OpenToken::KeyGenerator - Generates keys based on shared passwords
 
   use Crypt::OpenToken::KeyGenerator;
 
-  $key = Crypt::OpenToken::KeyGenerator::generate($password, $keysize);
+  my $keysize  = 16;          # Key size, in Bytes
+  my $password = 'abc123';    # shared password
+  my $key      = Crypt::OpenToken::KeyGenerator::generate($password, $keysize);
 
 =head1 DESCRIPTION
 
