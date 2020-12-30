@@ -298,22 +298,22 @@ Crypt::OpenToken - Perl implementation of Ping Identity's "OpenToken"
 
   use Crypt::OpenToken;
 
-  $data = {
+  my $data = {
       foo => 'bar',
       bar => 'baz',
   };
 
   # create an OpenToken factory based on a given shared password
-  $factory = Crypt::OpenToken->new(password => $password);
+  my $factory = Crypt::OpenToken->new(password => 'abc123');
 
   # encrypt a hash-ref of data into an OpenToken.
-  $token_str = $factory->create(
+  my $token_str = $factory->create(
       Crypt::OpenToken::CIPHER_AES128,
       $data,
   );
 
   # decrypt an OpenToken, check if its valid, and get data back out
-  $token = $factory->parse($token_str);
+  my $token = $factory->parse($token_str);
   if ($token->is_valid) {
       $data = $token->data();
   }
