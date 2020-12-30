@@ -9,7 +9,6 @@ with 'Crypt::OpenToken::Cipher';
 sub keysize { 0 }
 sub iv_len  { 0 }
 sub cipher {
-    my ($self, $key, $iv) = @_;
     # its a "NULL" cipher... there's *no* need for a key or an iv...
     return Crypt::NULL->new('dummy key');
 }
