@@ -1,6 +1,8 @@
 Revision history for Perl extension Crypt::OpenToken:
 
 {{$NEXT}}
+
+0.09      2020-12-30 20:58:28-08:00 America/Vancouver
     - Minor POD fixes, including spelling corrections
     - Use namespace::autoclean to ensure all namespaces are clean
     - Cleaned out unused variables
