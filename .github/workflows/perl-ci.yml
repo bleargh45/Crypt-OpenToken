@@ -74,11 +74,10 @@ jobs:
         run: tar -xz --strip-components 1 -f *.gz
 
       - name: Install dependencies
-        uses: perl-actions/install-with-cpm@stable
+        uses: perl-actions/install-with-cpanm@v1
         with:
           sudo: false
-          cpanfile: cpanfile
-          args: "${{ matrix.recommends }}"
+          args: "--installdeps . ${{ matrix.recommends }}"
 
       - name: Build
         run: |
