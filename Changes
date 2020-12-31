@@ -1,0 +1,45 @@
+Revision history for Perl extension Crypt::OpenToken:
+
+0.09      2020-12-30 20:58:28-08:00 America/Vancouver
+    - Minor POD fixes, including spelling corrections
+    - Use namespace::autoclean to ensure all namespaces are clean
+    - Cleaned out unused variables
+    - Updated SYNOPSIS sections, so they will pass syntax checks
+
+0.08      2020-12-28 13:04:13-08:00 America/Vancouver
+    - Switch to Dist::Zilla
+    - Use GitHub Actions for CI.
+
+0.07    - Tue Feb 28 10:44:26 PST 2012
+    - Minor updates to xt/ tests
+
+0.06    - Tue Nov  2 14:22:31 PDT 2010
+    - Fix mode used to open "/dev/urandom"; should be O_RDONLY not O_RDWR
+
+0.05    - Tue Oct  5 22:34:51 PDT 2010
+    - Indicate in docs that C:OTK doesn't support the "obfuscate password"
+      option in the OpenToken specification.
+    - Fix serialization bug when dealing with empty/blank values.  Thanks to
+      Travis Spencer for the test case.
+    - Moved author tests into "xt/".
+
+0.04    - Sun Sep 26 21:51:21 PDT 2010
+    - add other missing dependencies.  Test::Prereq++
+
+0.03    - Fri Sep 24 22:10:42 PDT 2010
+    - add (forgotten) dependency on Moose.
+
+0.02    - Fri Sep 24 12:44:24 PDT 2010
+    - add support for "NULL encryption"
+    - add support for "DES3-168 encryption"
+    - enable support for "AES-256 encryption"
+    - ensure we only unpack "payload_len" bytes of the payload
+    - use /dev/urandom to create random IV
+    - internal cleanups/refactorings
+    - *noticably* faster than previous release; several performance
+      improvements have been made
+    - new method to check if token requires renewal by re-authenticating the
+      User.
+
+0.01    - Thu Feb  4 15:34:00 PST 2010
+    - initial version
