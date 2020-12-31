@@ -37,7 +37,7 @@ jobs:
           path: "*.gz"
 
   test:
-    name: "Perl v${{ matrix.perl-version }}"
+    name: "Perl v${{ matrix.perl-version }} / ${{ matrix.recommends }}"
     needs: build
     runs-on: ubuntu-latest
 
@@ -57,6 +57,9 @@ jobs:
           - "5.12"
           - "5.10"
           - "5.8"
+        recommends:
+          - "--with-recommends"
+          - "--without-recommends"
 
     container:
       image: perl:${{ matrix.perl-version }}
@@ -75,6 +78,7 @@ jobs:
         with:
           sudo: false
           cpanfile: cpanfile
+          args: "${{ matrix.recommends }}"
 
       - name: Build
         run: |
