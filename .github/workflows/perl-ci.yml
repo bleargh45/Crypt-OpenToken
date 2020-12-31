@@ -15,18 +15,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install Dist::Zilla
+      - name: Install CPM + Dist::Zilla Author Bundle
         uses: perl-actions/install-with-cpm@stable
         with:
           sudo: false
-          install: |
-            Dist::Zilla
-            Dist::Zilla::Plugin::Prereqs::FromCPANfile
-            Dist::Zilla::Plugin::Test::MinimumVersion
-            Dist::Zilla::Plugin::ReadmeAnyFromPod
-            Dist::Zilla::Plugin::EnsureChangesHasContent
-            Dist::Zilla::Plugin::BumpVersionAfterRelease
-            Dist::Zilla::Plugin::Git
+          install: Dist::Zilla::PluginBundle::Author::GTERMARS
 
       - name: Install dependencies
         run: cpm install -g --no-test --show-build-log-on-failure $(dzil listdeps --author --missing)
