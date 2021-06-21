@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 1;
+use Test::More;
 use MIME::Base64;
 use Crypt::OpenToken::KeyGenerator;
 
@@ -25,3 +25,6 @@ generate_key: {
     is $generated_base64, $expected_base64,
         'Generated key matches other implementations';
 }
+
+###############################################################################
+done_testing();

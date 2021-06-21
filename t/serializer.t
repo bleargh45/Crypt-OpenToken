@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 12;
+use Test::More;
 use Test::Differences;
 use Crypt::OpenToken::Serializer;
 
@@ -124,3 +124,6 @@ empty_or_blank_values: {
     my %thawed = Crypt::OpenToken::Serializer::thaw($serialized);
     eq_or_diff \%thawed, \%data, 'empty/blank values; thaw';
 }
+
+###############################################################################
+done_testing();

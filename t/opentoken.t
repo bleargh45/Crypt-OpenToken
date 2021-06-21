@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 3;
+use Test::More;
 use Test::Exception;
 use Crypt::OpenToken;
 
@@ -31,3 +31,6 @@ base64_encoding: {
     my $roundtrip = $factory->_base64_encode($decoded);
     is $roundtrip, $encoded, 'Base64 decode/encode round-trip';
 }
+
+###############################################################################
+done_testing();

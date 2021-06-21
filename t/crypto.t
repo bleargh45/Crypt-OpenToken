@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 1;
+use Test::More;
 use Test::Exception;
 use Crypt::OpenToken;
 
@@ -15,3 +15,6 @@ invalid_cipher: {
     throws_ok { $factory->create(9999, $data) }
         qr/unsupported OTK cipher; '9999'/;
 }
+
+###############################################################################
+done_testing();
