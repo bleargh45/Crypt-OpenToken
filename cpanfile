@@ -13,6 +13,4 @@ recommends 'Crypt::CBC';
 recommends 'Crypt::DES_EDE3';
 recommends 'Crypt::NULL';
 
-test_requires 'Test::More', '>= 0.96';
-test_requires 'Test::Differences';
-test_requires 'Test::Exception';
+test_requires 'Test2::Suite', '>= 0.000118';

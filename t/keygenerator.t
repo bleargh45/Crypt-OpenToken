@@ -2,8 +2,9 @@
 
 use strict;
 use warnings;
-use Test::More;
 use MIME::Base64;
+use Test2::V0;
+
 use Crypt::OpenToken::KeyGenerator;
 
 ###############################################################################

@@ -3,7 +3,8 @@
 use strict;
 use warnings;
 use POSIX qw(strftime);
-use Test::More;
+use Test2::V0;
+
 use Crypt::OpenToken::Token;
 
 ###############################################################################

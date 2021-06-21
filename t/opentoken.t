@@ -2,14 +2,15 @@
 
 use strict;
 use warnings;
-use Test::More;
-use Test::Exception;
+use Test2::V0;
+use Test2::Tools::Exception;
+
 use Crypt::OpenToken;
 
 ###############################################################################
 # TEST: instantiation without password; fails
 instantiation_no_key: {
-    throws_ok { Crypt::OpenToken->new() } qr/password.*required/,
+    like dies { Crypt::OpenToken->new() }, qr/password.*required/,
         '"password" is a required parameter';
 }
 
@@ -17,7 +18,7 @@ instantiation_no_key: {
 # TEST: instantiation
 instantiation: {
     my $factory = Crypt::OpenToken->new(password => 'abc123');
-    isa_ok $factory, 'Crypt::OpenToken', 'instantiated token factory';
+    is $factory, object { prop blessed => 'Crypt::OpenToken'; }, 'instantiated token factory';
 }
 
 ###############################################################################

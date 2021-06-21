@@ -4,6 +4,7 @@ Revision history for Perl extension Crypt::OpenToken:
     - Disable "compile everything" test, as some dependencies are recommended
       and not required.
     - Use "done_testing()" instead of planning out number of tests at start
+    - Switch to "Test2::V0", from "Test::More".
 
 0.09      2020-12-30 20:58:28-08:00 America/Vancouver
     - Minor POD fixes, including spelling corrections
