@@ -1,4 +1,4 @@
-requires 'perl', '>= 5.008001';
+requires 'perl', '>= 5.012';
 requires 'MIME::Base64';
 requires 'Digest::HMAC_SHA1';
 requires 'Digest::SHA1';

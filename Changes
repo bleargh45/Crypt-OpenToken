@@ -1,6 +1,8 @@
 Revision history for Perl extension Crypt::OpenToken:
 
 {{$NEXT}}
+    - Bump minimum required Perl to v5.12.0, the minimum required for
+      Data::OptList, one of our upstream dependencies.
 
 0.10      2021-06-21 11:41:10-07:00 America/Vancouver
     - Disable "compile everything" test, as some dependencies are recommended
